@@ -1,9 +1,9 @@
-<html>  
+<html>
 <p><i>We decided that we hated C++ --ken</i></p>
-<h2>ljhack</h2>
+<h2>lijhello</h2>
 <ul>
 <li>C, C++, Linux, Coding, Sysadmin
-<li><a href="https://github.com/ljhack">https://github.com/ljhack</a>
+<li><a href="https://github.com/lijhello">https://github.com/lijhello</a>
 <li>Shenzhen 518057, China
 </ul>
 
@@ -14,11 +14,11 @@ Linus Torvalds Answers Your Questions
 October 11, 2012
 https://meta.slashdot.org/story/12/10/11/0030249/linus-torvalds-answers-your-questions
 
-Linus: At the opposite end of the spectrum, I actually wish more people 
-understood the really core low-level kind of coding. Not big, complex 
-stuff like the lockless name lookup, but simply good use of 
-pointers-to-pointers etc. For example, I've seen too many people who 
-delete a singly-linked list entry by keeping track of the "prev" entry, 
+Linus: At the opposite end of the spectrum, I actually wish more people
+understood the really core low-level kind of coding. Not big, complex
+stuff like the lockless name lookup, but simply good use of
+pointers-to-pointers etc. For example, I've seen too many people who
+delete a singly-linked list entry by keeping track of the "prev" entry,
 and then to delete the entry, doing something like
 
 if (prev)
@@ -26,19 +26,19 @@ if (prev)
 else
     list_head = entry->next;
 
-and whenever I see code like that, I just go "This person doesn't 
+and whenever I see code like that, I just go "This person doesn't
 understand pointers". And it's sadly quite common.
 
-People who understand pointers just use a "pointer to the entry 
-pointer", and initialize that with the address of the list_head. And 
-then as they traverse the list, they can remove the entry without using 
+People who understand pointers just use a "pointer to the entry
+pointer", and initialize that with the address of the list_head. And
+then as they traverse the list, they can remove the entry without using
 any conditionals, by just doing a "*pp = entry->next".
 
-So there's lots of pride in doing the small details right. It may not 
-be big and important code, but I do like seeing code where people 
-really thought about the details, and clearly also were thinking about 
-the compiler being able to generate efficient code (rather than hoping 
-that the compiler is so smart that it can make efficient code *despite* 
+So there's lots of pride in doing the small details right. It may not
+be big and important code, but I do like seeing code where people
+really thought about the details, and clearly also were thinking about
+the compiler being able to generate efficient code (rather than hoping
+that the compiler is so smart that it can make efficient code *despite*
 the state of the original source code).
 </pre>
 
@@ -78,38 +78,38 @@ remove_list_entry(entry)
     // *address* of the thing we'll update
 
     indirect = &head;
-    
+
     // Walk the list, looking for the thing that
     // points to the entry we want to remove
 
     while (*indirect != entry)
         indirect = &(*indirect)->next;
-    
+
     // .. and just remove it
     *indirect = entry->next;
 }
 
-Linus: The most interesting part to me is the last if statement. 
-Because what happens in a singly-linked list -- this is trying to 
-remove an existing entry from a list -- and there's a difference 
-between if it's the first entry or whether it's an entry in the middle. 
-Because if it's the first entry, you have to change the pointer to the 
-first entry. If it's in the middle, you have to change the pointer of a 
+Linus: The most interesting part to me is the last if statement.
+Because what happens in a singly-linked list -- this is trying to
+remove an existing entry from a list -- and there's a difference
+between if it's the first entry or whether it's an entry in the middle.
+Because if it's the first entry, you have to change the pointer to the
+first entry. If it's in the middle, you have to change the pointer of a
 previous entry. So they're two completely different cases.
 
-And this is better. It does not have the if statement. And it doesn't 
-really matter -- I don't want you understand why it doesn't have the if 
-statement, but I want you to understand that sometimes you can see a 
-problem in a different way and rewrite it so that a special case goes 
-away and becomes the normal case. And that's good code. But this is 
-simple code. This is CS 101. This is not important -- although, details 
+And this is better. It does not have the if statement. And it doesn't
+really matter -- I don't want you understand why it doesn't have the if
+statement, but I want you to understand that sometimes you can see a
+problem in a different way and rewrite it so that a special case goes
+away and becomes the normal case. And that's good code. But this is
+simple code. This is CS 101. This is not important -- although, details
 are important.
 
-To me, the sign of people I really want to work with is that they have 
-good taste, which is how ... I sent you this stupid example that is not 
-relevant because it's too small. Good taste is much bigger than this. 
-Good taste is about really seeing the big patterns and kind of 
+To me, the sign of people I really want to work with is that they have
+good taste, which is how ... I sent you this stupid example that is not
+relevant because it's too small. Good taste is much bigger than this.
+Good taste is about really seeing the big patterns and kind of
 instinctively knowing what's the right way to do things.
-</pre>   
-  
+</pre>
+
 </html>
