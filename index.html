@@ -1,6 +1,6 @@
 <html>
 <body>
-<pre>        
+<pre>
 # build shared library with -fPIC, -shared
 CFLAGS   = -g # -O3 # -fPIC  # CXXFLAGS for .cpp
 LDFLAGS  = # -L../hello # -shared
@@ -13,6 +13,6 @@ main : $(patsubst %.c,%.o,$(wildcard *.c))  # .cpp
 -include *.d
 clean : ; -rm -fr *.o *.d
 .PHONY : clean
-</pre>    
-</body>    
+</pre>
+</body>
 </html>
